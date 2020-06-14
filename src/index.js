@@ -1,12 +1,12 @@
 import { GraphQLServer } from 'graphql-yoga'
+import { users, posts } from './dummy-data'
 
 // Type Definitions (Schema)
 
 const typeDefs = `
   type Query {
-    greeting(name: String): String!
-    add(numbers: [Float!]!): Float!
-    grades: [Int!]!
+    users(query: String): [User!]!
+    posts(query: String): [Post!]!
     me: User!
     post: Post!
   }
@@ -31,13 +31,13 @@ const typeDefs = `
 const resolvers = {
   Query: {
     // parent, args, context (ctx) and info are available on all resolvers
-    greeting(parent, args, ctx, info) {
-      return args.name ? `Hello ${args.name}!` : 'Hello!'
+    users(parent, args, ctx, info) {
+      if (!args.query) {
+        return users
+      }
+      return users.filter((user) => user.name.toLowerCase().includes(args.query.toLowerCase()))
     },
-    grades(parent, args, ctx, info) {
-      return [99, 80, 93]
-    },
-    me() {
+    me(parent, args, ctx, info) {
       // Usually dynamic from a lookup
       return {
         id: 'g2345j234j5hg',
@@ -46,18 +46,16 @@ const resolvers = {
         age: 49 // optional as no ! in def
       }
     },
-    post() {
-      return {
-        id: '345jkh2l3k4j5h23',
-        title: 'What\'s for tea',
-        body: 'Sausages for me',
-        published: true
+    posts(parent, args, ctx, info) {
+      if (!args.query) {
+        return posts
       }
-    },
-    add(parent, args, ctx, info) {
-      // return args.x && args.y ? args.x + args.y : 0
-      if (args.numbers.length === 0) { return 0 }
-      return args.numbers.reduce((acc, curr) => acc + curr)
+      return posts.filter((post) => {
+        const search  = args.query.toLowerCase()
+        const title = post.title.toLowerCase()
+        const body = post.body.toLowerCase()
+        return title.includes(search) || body.includes(search)
+      })
     }
   }
 }
