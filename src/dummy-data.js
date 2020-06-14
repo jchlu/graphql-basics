@@ -3,12 +3,12 @@ export const users = [{
   name: 'Gene Hunt',
   email: 'gene@example.com',
   age: 49
-},{
+}, {
   id: 'f9g6f869sgffg',
   name: 'Annie',
   email: 'annie@example.com',
   age: 28
-},{
+}, {
   id: '09f8g98fg70fd7gs98fg',
   name: 'Sam',
   email: 'sam@example.com',
@@ -37,18 +37,22 @@ export const posts = [{
 
 export const comments = [{
   id: 'fdg87fdg87dsf07gs',
-  text: 'That sausage was cold'
-},
-{
+  text: 'That sausage was cold',
+  author: 'f9g6f869sgffg',
+  post: '7d9f8g7d0f9g7ds09f7g'
+}, {
   id: '709hfg7hgfh7df09g',
-  text: 'That sausage was hot!'
-},
-{
+  text: 'That sausage was hot!',
+  author: '09f8g98fg70fd7gs98fg',
+  post: '7d9f8g7d0f9g7ds09f7g'
+}, {
   id: 'fdg87fdg87cxv70dsf07gs',
-  text: 'That pudding was cake'
-},
-{
+  text: 'That pudding was cake',
+  author: 'f9g6f869sgffg',
+  post: '34l53453kh53kh5kj4h5l'
+}, {
   id: '76v58z7x5cv765xcv5',
-  text: 'That pudding was chocolate brownie!'
-},
-]
+  text: 'That pudding was chocolate brownie!',
+  author: 'f9g6f869sgffg',
+  post: 'fdg987dfg98fd98gfdg'
+}]
