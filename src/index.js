@@ -1,5 +1,5 @@
 import { GraphQLServer } from 'graphql-yoga'
-import { users, posts } from './dummy-data'
+import { users, posts, comments } from './dummy-data'
 
 // Type Definitions (Schema)
 
@@ -8,7 +8,7 @@ const typeDefs = `
     users(query: String): [User!]!
     posts(query: String): [Post!]!
     me: User!
-    post: Post!
+    comments: [Comment!]!
   }
 
   type User {
@@ -25,6 +25,11 @@ const typeDefs = `
     body: String!
     published: Boolean!
     author: User!
+  }
+
+  type Comment {
+    id: ID!
+    text: String!
   }
 `
 
@@ -58,6 +63,9 @@ const resolvers = {
         const body = post.body.toLowerCase()
         return title.includes(search) || body.includes(search)
       })
+    },
+    comments(parent, args, ctx, info) {
+      return comments
     }
   },
   Post: {

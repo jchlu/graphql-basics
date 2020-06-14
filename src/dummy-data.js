@@ -34,3 +34,21 @@ export const posts = [{
   published: true,
   author: 'f9g6f869sgffg'
 }]
+
+export const comments = [{
+  id: 'fdg87fdg87dsf07gs',
+  text: 'That sausage was cold'
+},
+{
+  id: '709hfg7hgfh7df09g',
+  text: 'That sausage was hot!'
+},
+{
+  id: 'fdg87fdg87cxv70dsf07gs',
+  text: 'That pudding was cake'
+},
+{
+  id: '76v58z7x5cv765xcv5',
+  text: 'That pudding was chocolate brownie!'
+},
+]
