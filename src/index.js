@@ -4,6 +4,8 @@ import { GraphQLServer } from 'graphql-yoga'
 
 const typeDefs = `
   type Query {
+    greeting(name: String): String!
+    add(x: Float!, y: Float!): Float!
     me: User!
     post: Post!
   }
@@ -27,6 +29,10 @@ const typeDefs = `
 
 const resolvers = {
   Query: {
+    // parent, args, context (ctx) and info are available on all resolvers
+    greeting(parent, args, ctx, info) {
+      return args.name ? `Hello ${args.name}!` : 'Hello!'
+    },
     me() {
       // Usually dynamic from a lookup
       return {
@@ -43,6 +49,9 @@ const resolvers = {
         body: 'Sausages for me',
         published: true
       }
+    },
+    add(parent, args, ctx, info) {
+      return args.x && args.y ? args.x + args.y : 0
     }
   }
 }
