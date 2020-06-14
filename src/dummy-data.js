@@ -19,15 +19,18 @@ export const posts = [{
   id: '34l53453kh53kh5kj4h5l',
   title: 'Blog Post One',
   body: 'This is an awesome post',
-  published: true
+  published: true,
+  author: 'df7g69sd7gf6d87f6g'
 }, {
   id: 'fdg987dfg98fd98gfdg',
   title: 'Another Awesome Post',
   body: 'This post is great',
-  published: false
+  published: false,
+  author: 'df7g69sd7gf6d87f6g'
 }, {
   id: '7d9f8g7d0f9g7ds09f7g',
   title: 'Yet another great post',
   body: 'What a cracking article this is!',
-  published: true
+  published: true,
+  author: 'f9g6f869sgffg'
 }]

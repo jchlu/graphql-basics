@@ -16,6 +16,7 @@ const typeDefs = `
     name: String!
     email: String!
     age: Int
+    posts: [Post!]!
   }
 
   type Post {
@@ -23,6 +24,7 @@ const typeDefs = `
     title: String!
     body: String!
     published: Boolean!
+    author: User!
   }
 `
 
@@ -56,6 +58,16 @@ const resolvers = {
         const body = post.body.toLowerCase()
         return title.includes(search) || body.includes(search)
       })
+    }
+  },
+  Post: {
+    author(parent, args, ctx, info) {
+      return users.find((user) => user.id === parent.author)
+    }
+  },
+  User: {
+    posts(parent, args, ctx, info) {
+      return posts.filter((post) => post.author === parent.id)
     }
   }
 }
