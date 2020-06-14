@@ -6,6 +6,7 @@ const typeDefs = `
   type Query {
     greeting(name: String): String!
     add(x: Float!, y: Float!): Float!
+    grades: [Int!]!
     me: User!
     post: Post!
   }
@@ -32,6 +33,9 @@ const resolvers = {
     // parent, args, context (ctx) and info are available on all resolvers
     greeting(parent, args, ctx, info) {
       return args.name ? `Hello ${args.name}!` : 'Hello!'
+    },
+    grades(parent, args, ctx, info) {
+      return [99, 80, 93]
     },
     me() {
       // Usually dynamic from a lookup
