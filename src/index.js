@@ -13,15 +13,28 @@ const typeDefs = `
   }
 
   type Mutation {
-    createUser(data: CreateUserInput): User!
-    createPost(title: String!, body: String!, published: Boolean!, author: ID!): Post!
-    createComment(text: String!, author: ID!, post: ID!): Comment!
+    createUser(data: CreateUserInput!): User!
+    createPost(data: CreatePostInput!): Post!
+    createComment(data: CreateCommentInput!): Comment!
   }
 
   input CreateUserInput {
     name: String!,
     email: String!,
     age: Int
+  }
+
+  input CreatePostInput {
+    title: String!,
+    body: String!,
+    published: Boolean!,
+    author: ID!
+  }
+
+  input CreateCommentInput {
+    text: String!,
+    author: ID!,
+    post: ID!
   }
 
   type User {
@@ -126,7 +139,7 @@ const resolvers = {
       return user
     },
     createPost(parent, args, ctx, info) {
-      const { title, body, published, author } = args
+      const { title, body, published, author } = args.data
       const userExists = users.some((user) => user.id === author)
       if (!userExists) {
         throw new Error('Author does not exist')
@@ -142,14 +155,14 @@ const resolvers = {
       return post
     },
     createComment(parent, args, ctx, info) {
-      const postExists = posts.some((post) => post.id === args.post && post.published)
-      const authorExists = users.some((user) => user.id === args.author)
+      const postExists = posts.some((post) => post.id === args.data.post && post.published)
+      const authorExists = users.some((user) => user.id === args.data.author)
       if (!postExists || !authorExists) {
         throw new Error('Either the post or author ID is incorrect')
       }
       const comment = {
         id: uuidv4(),
-        ...args
+        ...args.data
       }
       comments.push(comment)
       return comment
