@@ -54,7 +54,7 @@ const comments = [{
 }, {
   id: commentId2,
   text: 'That sausage was hot!',
-  author: userId2,
+  author: userId1,
   post: postId2
 }, {
   id: commentId3,

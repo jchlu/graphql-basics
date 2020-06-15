@@ -1,6 +1,6 @@
 const { GraphQLServer } = require('graphql-yoga')
 const { v4: uuidv4 } = require('uuid')
-const { users, posts, comments } = require('./dummy-data')
+let { users, posts, comments } = require('./dummy-data')
 
 // Type Definitions (Schema)
 
@@ -14,6 +14,7 @@ const typeDefs = `
 
   type Mutation {
     createUser(data: CreateUserInput!): User!
+    deleteUser(id: ID!): User!
     createPost(data: CreatePostInput!): Post!
     createComment(data: CreateCommentInput!): Comment!
   }
@@ -137,6 +138,28 @@ const resolvers = {
       }
       users.push(user)
       return user
+    },
+    deleteUser(parent, args, ctx, info) {
+      // userIndex from findIndex
+      const userIndex = users.findIndex((user) => user.id === args.id)
+      // if it equals -1 no user was found, throw Error
+      if (userIndex === -1) { throw new Error('user not found') }
+      // splice users using userIndex, 1 item
+      const deletedUser = users.splice(userIndex, 1)[0]
+      // filter posts, return true where not a match on author equals arg.id
+      posts = posts.filter((post) => {
+        const match = post.author === args.id
+        // conditionally filter comments if there's a match,
+        // returning if comment post not equal to post removed
+        if (match) {
+          comments = comments.filter((comment) => comment.post !== post.id)
+        }
+        return !match
+      })
+      // after filtering posts,
+      // filter comments to leave only those where author not the arg id of the removed user
+      comments = comments.filter((comment) => comment.author !== args.id)
+      return deletedUser
     },
     createPost(parent, args, ctx, info) {
       const { title, body, published, author } = args.data
