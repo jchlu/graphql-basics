@@ -143,9 +143,7 @@ const resolvers = {
       }
       const comment = {
         id: uuidv4(),
-        text: args.text,
-        author: args.author,
-        post: args.post
+        ...args
       }
       comments.push(comment)
       return comment
