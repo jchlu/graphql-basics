@@ -136,7 +136,6 @@ const resolvers = {
       return post
     },
     createComment(parent, args, ctx, info) {
-      console.log(args)
       const postExists = posts.some((post) => post.id === args.post)
       const authorExists = users.some((user) => user.id === args.author)
       if (!postExists || !authorExists) {
