@@ -13,6 +13,7 @@
     "dev": "nodemon src/index.js --exec babel-node"
   },
   "devDependencies": {
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "nodemon": "^2.0.4"
   }
 }
