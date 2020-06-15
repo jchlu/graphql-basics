@@ -136,7 +136,7 @@ const resolvers = {
       return post
     },
     createComment(parent, args, ctx, info) {
-      const postExists = posts.some((post) => post.id === args.post)
+      const postExists = posts.some((post) => post.id === args.post && post.published)
       const authorExists = users.some((user) => user.id === args.author)
       if (!postExists || !authorExists) {
         throw new Error('Either the post or author ID is incorrect')
