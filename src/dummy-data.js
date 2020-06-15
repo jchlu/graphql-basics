@@ -1,34 +1,34 @@
 export const users = [{
-  id: 'df7g69sd7gf6d87f6g',
+  id: '1',
   name: 'Gene Hunt',
   email: 'gene@example.com',
   age: 49
 }, {
-  id: 'f9g6f869sgffg',
+  id: '2',
   name: 'Annie',
   email: 'annie@example.com',
   age: 28
 }, {
-  id: '09f8g98fg70fd7gs98fg',
+  id: '3',
   name: 'Sam',
   email: 'sam@example.com',
   age: 32
 }]
 
 export const posts = [{
-  id: '34l53453kh53kh5kj4h5l',
+  id: '10',
   title: 'Blog Post One',
   body: 'This is an awesome post',
   published: true,
   author: 'df7g69sd7gf6d87f6g'
 }, {
-  id: 'fdg987dfg98fd98gfdg',
+  id: '11',
   title: 'Another Awesome Post',
   body: 'This post is great',
   published: false,
   author: 'df7g69sd7gf6d87f6g'
 }, {
-  id: '7d9f8g7d0f9g7ds09f7g',
+  id: '12',
   title: 'Yet another great post',
   body: 'What a cracking article this is!',
   published: true,
@@ -36,23 +36,23 @@ export const posts = [{
 }]
 
 export const comments = [{
-  id: 'fdg87fdg87dsf07gs',
+  id: '20',
   text: 'That sausage was cold',
-  author: 'f9g6f869sgffg',
-  post: '7d9f8g7d0f9g7ds09f7g'
+  author: '2',
+  post: '11'
 }, {
-  id: '709hfg7hgfh7df09g',
+  id: '21',
   text: 'That sausage was hot!',
-  author: '09f8g98fg70fd7gs98fg',
-  post: '7d9f8g7d0f9g7ds09f7g'
+  author: '1',
+  post: '10'
 }, {
-  id: 'fdg87fdg87cxv70dsf07gs',
+  id: '22',
   text: 'That pudding was cake',
-  author: 'f9g6f869sgffg',
-  post: '34l53453kh53kh5kj4h5l'
+  author: '2',
+  post: '12'
 }, {
-  id: '76v58z7x5cv765xcv5',
+  id: '23',
   text: 'That pudding was chocolate brownie!',
-  author: 'f9g6f869sgffg',
-  post: 'fdg987dfg98fd98gfdg'
+  author: '3',
+  post: '12'
 }]
