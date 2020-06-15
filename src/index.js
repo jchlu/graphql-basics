@@ -1,6 +1,6 @@
-import { GraphQLServer } from 'graphql-yoga'
-import uuidv4 from 'uuid/dist/v4'
-import { users, posts, comments } from './dummy-data'
+const { GraphQLServer } = require('graphql-yoga')
+const { v4: uuidv4 } = require('uuid')
+const { users, posts, comments } = require('./dummy-data')
 
 // Type Definitions (Schema)
 

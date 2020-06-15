@@ -9,7 +9,7 @@ const commentId2 = '17387775-b944-45c1-a5b2-60ea2f3a26fc'
 const commentId3 = '1bc860ba-c9d6-4f27-9470-ea5de3d35fe6'
 const commentId4 = '7352ddf5-d944-4a4a-b933-9c12b8bb2acc'
 
-export const users = [{
+const users = [{
   id: userId1,
   name: 'Gene Hunt',
   email: 'gene@example.com',
@@ -26,7 +26,7 @@ export const users = [{
   age: 32
 }]
 
-export const posts = [{
+const posts = [{
   id: postId1,
   title: 'Blog Post One',
   body: 'This is an awesome post',
@@ -46,7 +46,7 @@ export const posts = [{
   author: userId2
 }]
 
-export const comments = [{
+const comments = [{
   id: commentId1,
   text: 'That sausage was cold',
   author: userId1,
@@ -67,3 +67,9 @@ export const comments = [{
   author: userId1,
   post: postId3
 }]
+
+module.exports = {
+  users,
+  posts,
+  comments
+}
