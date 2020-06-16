@@ -4,7 +4,7 @@ module.exports = {
     if (!args.query) {
       return db.users
     }
-    return db.users.filter((user) => user.name.toLowerCase().includes(args.query.toLowerCase()))
+    return db.users.filter(user => user.name.toLowerCase().includes(args.query.toLowerCase()))
   },
   me(parent, args, { db }, info) {
     // Usually dynamic from a lookup
@@ -19,7 +19,7 @@ module.exports = {
     if (!args.query) {
       return db.posts
     }
-    return db.posts.filter((post) => {
+    return db.posts.filter(post => {
       const search = args.query.toLowerCase()
       const title = post.title.toLowerCase()
       const body = post.body.toLowerCase()
