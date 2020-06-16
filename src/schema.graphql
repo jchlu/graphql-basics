@@ -17,6 +17,10 @@ type Query {
     deleteComment(id: ID!): Comment!
   }
 
+  type Subscription {
+    count: Int!
+  }
+
   input CreateUserInput {
     name: String!,
     email: String!,
