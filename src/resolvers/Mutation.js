@@ -46,18 +46,18 @@ module.exports = {
     // splice db.users using userIndex, 1 item
     const deletedUser = db.users.splice(userIndex, 1)[0]
     // filter db.posts, return true where not a match on author equals arg.id
-    db.posts = db.posts.filter(post => {
-      const match = post.author === id
+    db.posts = db.posts.filter(p => {
+      const match = p.author === id
       // conditionally filter db.comments if there's a match,
       // returning if comment post not equal to post removed
       if (match) {
-        db.comments = db.comments.filter(c => c.post !== post.id)
+        db.comments = db.comments.filter(c => c.post !== p.id)
       }
       return !match
     })
     // after filtering db.posts,
     // filter db.comments to leave only those where author not the arg id of the removed user
-    db.comments = db.comments.filter(comment => comment.author !== id)
+    db.comments = db.comments.filter(c => c.author !== id)
     return deletedUser
   },
   createPost(parent, { data: { title, body, published, author } }, { db }, info) {
@@ -93,7 +93,7 @@ module.exports = {
     const postIndex = db.posts.findIndex(p => p.id === id)
     if (postIndex === -1) { throw new Error('post not found') }
     const deletedPost = db.posts.splice(postIndex, 1)[0]
-    db.comments = db.comments.filter(comment => comment.post !== id)
+    db.comments = db.comments.filter(c => c.post !== id)
     return deletedPost
   },
   createComment(parent, { data: { text, author, post} }, { db }, info) {
