@@ -1,16 +1,14 @@
 const { v4: uuidv4 } = require('uuid')
 
 module.exports = {
-  createUser(parent, { data: { name, email, age = null } }, { db }, info) {
-    const emailTaken = db.users.some(u => u.email === email)
+  createUser(parent, { data }, { db }, info) {
+    const emailTaken = db.users.some(u => u.email === data.email)
     if (emailTaken) {
       throw new Error('Email taken')
     }
     const user = {
       id: uuidv4(),
-      name,
-      email,
-      age
+      ...data
     }
     db.users.push(user)
     return user
@@ -60,17 +58,14 @@ module.exports = {
     db.comments = db.comments.filter(c => c.author !== id)
     return deletedUser
   },
-  createPost(parent, { data: { title, body, published, author } }, { db }, info) {
-    const userExists = db.users.some(u => u.id === author)
+  createPost(parent, { data }, { db }, info) {
+    const userExists = db.users.some(u => u.id === data.author)
     if (!userExists) {
       throw new Error('Author does not exist')
     }
     const post = {
       id: uuidv4(),
-      title,
-      body,
-      published,
-      author
+      ...data
     }
     db.posts.push(post)
     return post
@@ -96,17 +91,15 @@ module.exports = {
     db.comments = db.comments.filter(c => c.post !== id)
     return deletedPost
   },
-  createComment(parent, { data: { text, author, post} }, { db }, info) {
-    const postExists = db.posts.some(p => p.id === post && p.published)
+  createComment(parent, { data }, { db }, info) {
+    const postExists = db.posts.some(p => p.id === data.post && p.published)
     const authorExists = db.users.some(u => u.id === author)
     if (!postExists || !authorExists) {
       throw new Error('Either the post or author ID is incorrect')
     }
     const comment = {
       id: uuidv4(),
-      text,
-      author,
-      post
+      ...data
     }
     db.comments.push(comment)
     return comment
