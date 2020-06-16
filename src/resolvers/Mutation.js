@@ -93,7 +93,7 @@ module.exports = {
   },
   createComment(parent, { data }, { db }, info) {
     const postExists = db.posts.some(p => p.id === data.post && p.published)
-    const authorExists = db.users.some(u => u.id === author)
+    const authorExists = db.users.some(u => u.id === data.author)
     if (!postExists || !authorExists) {
       throw new Error('Either the post or author ID is incorrect')
     }
