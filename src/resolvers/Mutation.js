@@ -1,4 +1,5 @@
 const { v4: uuidv4 } = require('uuid')
+const { PubSub } = require('graphql-yoga')
 
 module.exports = {
   createUser(parent, { data }, { db }, info) {
@@ -58,7 +59,7 @@ module.exports = {
     db.comments = db.comments.filter(c => c.author !== id)
     return deletedUser
   },
-  createPost(parent, { data }, { db }, info) {
+  createPost(parent, { data }, { db, pubsub }, info) {
     const userExists = db.users.some(u => u.id === data.author)
     if (!userExists) {
       throw new Error('Author does not exist')
@@ -68,6 +69,9 @@ module.exports = {
       ...data
     }
     db.posts.push(post)
+    if (post.published) {
+      pubsub.publish('post', { post })
+    }
     return post
   },
   updatePost(parent, { id, data: { title, body, published } }, { db }, info) {
@@ -91,7 +95,7 @@ module.exports = {
     db.comments = db.comments.filter(c => c.post !== id)
     return deletedPost
   },
-  createComment(parent, { data }, { db }, info) {
+  createComment(parent, { data }, { db, pubsub }, info) {
     const postExists = db.posts.some(p => p.id === data.post && p.published)
     const authorExists = db.users.some(u => u.id === data.author)
     if (!postExists || !authorExists) {
@@ -102,6 +106,7 @@ module.exports = {
       ...data
     }
     db.comments.push(comment)
+    pubsub.publish(`comment-${data.post}`, { comment })
     return comment
   },
   updateComment(parent, { id, data: { text } }, { db }, info) {

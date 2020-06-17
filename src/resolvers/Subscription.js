@@ -1,15 +1,15 @@
 module.exports = {
   // Subscriptions
-  count: {
+  comment: {
+    subscribe(parent, { postId }, { db, pubsub }, info) {
+      const post = db.posts.find(p => p.id === postId && p.published)
+      if (!post) { throw new Error('a published post with that id does not exist') }
+      return pubsub.asyncIterator(`comment-${postId}`)
+    }
+  },
+  post: {
     subscribe(parent, args, { pubsub }, info) {
-      let count = 0
-      setInterval(() => {
-        count++
-        pubsub.publish('count', {
-          count
-        })
-      }, 2000)
-      return pubsub.asyncIterator('count')
+      return pubsub.asyncIterator('post')
     }
   }
 }
