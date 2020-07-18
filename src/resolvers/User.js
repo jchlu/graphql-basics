@@ -4,5 +4,5 @@ module.exports = {
   },
   comments(parent, args, { db }, info) {
     return db.comments.filter(comment => comment.author === parent.id)
-  }
+  },
 }

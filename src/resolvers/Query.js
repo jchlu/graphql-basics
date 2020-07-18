@@ -4,7 +4,9 @@ module.exports = {
     if (!args.query) {
       return db.users
     }
-    return db.users.filter(user => user.name.toLowerCase().includes(args.query.toLowerCase()))
+    return db.users.filter(user =>
+      user.name.toLowerCase().includes(args.query.toLowerCase()),
+    )
   },
   me(parent, args, { db }, info) {
     // Usually dynamic from a lookup
@@ -12,7 +14,7 @@ module.exports = {
       id: 'g2345j234j5hg',
       name: 'Zuby',
       email: 'zubes@example.com',
-      age: 49 // optional as no ! in def
+      age: 49, // optional as no ! in def
     }
   },
   posts(parent, args, { db }, info) {
@@ -28,5 +30,5 @@ module.exports = {
   },
   comments(parent, args, { db }, info) {
     return db.comments
-  }
+  },
 }

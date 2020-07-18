@@ -4,5 +4,5 @@ module.exports = {
   },
   post(parent, args, { db }, info) {
     return db.posts.find(post => post.id === parent.post)
-  }
+  },
 }

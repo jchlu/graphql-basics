@@ -9,67 +9,80 @@ const commentId2 = '17387775-b944-45c1-a5b2-60ea2f3a26fc'
 const commentId3 = '1bc860ba-c9d6-4f27-9470-ea5de3d35fe6'
 const commentId4 = '7352ddf5-d944-4a4a-b933-9c12b8bb2acc'
 
-const users = [{
-  id: userId1,
-  name: 'Gene Hunt',
-  email: 'gene@example.com',
-  age: 49
-}, {
-  id: userId2,
-  name: 'Annie',
-  email: 'annie@example.com',
-  age: 28
-}, {
-  id: userId3,
-  name: 'Sam',
-  email: 'sam@example.com',
-  age: 32
-}]
+const users = [
+  {
+    id: userId1,
+    name: 'Gene Hunt',
+    email: 'gene@example.com',
+    age: 49,
+  },
+  {
+    id: userId2,
+    name: 'Annie',
+    email: 'annie@example.com',
+    age: 28,
+  },
+  {
+    id: userId3,
+    name: 'Sam',
+    email: 'sam@example.com',
+    age: 32,
+  },
+]
 
-const posts = [{
-  id: postId1,
-  title: 'Blog Post One',
-  body: 'This is an awesome post',
-  published: true,
-  author: userId1
-}, {
-  id: postId2,
-  title: 'Another Awesome Post',
-  body: 'This post is great',
-  published: false,
-  author: userId2
-}, {
-  id: postId3,
-  title: 'Yet another great post',
-  body: 'What a cracking article this is!',
-  published: true,
-  author: userId2
-}]
+const posts = [
+  {
+    id: postId1,
+    title: 'Blog Post One',
+    body: 'This is an awesome post',
+    published: true,
+    author: userId1,
+  },
+  {
+    id: postId2,
+    title: 'Another Awesome Post',
+    body: 'This post is great',
+    published: false,
+    author: userId2,
+  },
+  {
+    id: postId3,
+    title: 'Yet another great post',
+    body: 'What a cracking article this is!',
+    published: true,
+    author: userId2,
+  },
+]
 
-const comments = [{
-  id: commentId1,
-  text: 'That sausage was cold',
-  author: userId1,
-  post: postId1
-}, {
-  id: commentId2,
-  text: 'That sausage was hot!',
-  author: userId1,
-  post: postId2
-}, {
-  id: commentId3,
-  text: 'That pudding was cake',
-  author: userId3,
-  post: postId3
-}, {
-  id: commentId4,
-  text: 'That pudding was chocolate brownie!',
-  author: userId1,
-  post: postId3
-}]
+const comments = [
+  {
+    id: commentId1,
+    text: 'That sausage was cold',
+    author: userId1,
+    post: postId1,
+  },
+  {
+    id: commentId2,
+    text: 'That sausage was hot!',
+    author: userId1,
+    post: postId2,
+  },
+  {
+    id: commentId3,
+    text: 'That pudding was cake',
+    author: userId3,
+    post: postId3,
+  },
+  {
+    id: commentId4,
+    text: 'That pudding was chocolate brownie!',
+    author: userId1,
+    post: postId3,
+  },
+]
 
 module.exports = {
   users,
   posts,
-  comments
+  comments,
 }
